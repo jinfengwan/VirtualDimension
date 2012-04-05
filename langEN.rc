@@ -1,0 +1,464 @@
+/*
+ * Virtual Dimension -  a free, fast, and feature-full virtual desktop manager
+ * for the Microsoft Windows platform.
+ * Copyright (C) 2003-2008 Francois Ferrand
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+ * Place, Suite 330, Boston, MA 02111-1307 USA
+ *
+ */
+
+//
+#include "resource.h"
+#include <windows.h>
+#include <commctrl.h>
+#include <richedit.h>
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+LANGUAGE LANG_ENGLISH,SUBLANG_ENGLISH_US
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDS_LANGUAGE            ICON                    "english.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_VIRTUALDIMENSION MENU DISCARDABLE
+BEGIN
+    POPUP "Popupmenu"
+    BEGIN
+        MENUITEM "&About ...",                  IDM_ABOUT
+        MENUITEM "&Configure...",               IDM_CONFIGURE
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+END
+
+IDM_WALLPAPER_CTXMENU MENU DISCARDABLE
+BEGIN
+    POPUP "PopupMenu"
+    BEGIN
+        MENUITEM "&Default wallpaper",          IDC_DEFAULT_WALLPAPER
+        MENUITEM "&No wallpaper",               IDC_NO_WALLPAPER
+        MENUITEM SEPARATOR
+        MENUITEM "&Reset",                      IDC_PREVIOUS_WALLPAPER
+        MENUITEM SEPARATOR
+        MENUITEM "&Browse...",                  IDC_BROWSE_WALLPAPER
+    END
+END
+
+IDM_APPSLIST_CTXMENU MENU DISCARDABLE
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "&Add application...",         ID_ADDAPPL_CMD
+        MENUITEM "&Delete",                     ID_DELAPPL_CMD
+    END
+END
+
+IDM_SHORTCUTS_CTXMENU MENU DISCARDABLE
+BEGIN
+    POPUP "Menu"
+    BEGIN
+        MENUITEM "&Clear",                      IDC_CLEAR_SHORTCUT
+        MENUITEM "&Reset",                      40003
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DESKS_SETTINGS DIALOGEX DISCARDABLE 22, 17, 212, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK |
+    DS_FIXEDSYS | DS_CONTROL | DS_CENTER | WS_CHILD | WS_VISIBLE |
+    WS_CAPTION | WS_SYSMENU
+CAPTION "Desktops"
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    LISTBOX         IDC_DESK_LIST,7,7,138,79,LBS_NOINTEGRALHEIGHT |
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_DESK_SPIN,"msctls_updown32",UDS_ALIGNRIGHT |
+                    UDS_AUTOBUDDY | UDS_ARROWKEYS,105,7,11,78
+    PUSHBUTTON      "Insert",IDC_INSERT_DESK,155,7,50,14
+    PUSHBUTTON      "Remove",IDC_REMOVE_DESK,155,23,50,14
+    PUSHBUTTON      "Configure",IDC_SETUP_DESK,155,39,50,14
+    LTEXT           "Number of columns",IDC_STATIC,7,97,65,8,NOT WS_GROUP
+    EDITTEXT        IDC_COLUMN_NUMBER,73,94,26,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_COLUMN_SPIN,"msctls_updown32",UDS_SETBUDDYINT |
+                    UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS |
+                    UDS_NOTHOUSANDS,92,94,11,14
+END
+
+IDD_DESKTOPPROPS DIALOGEX DISCARDABLE 0, 0, 284, 102
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CENTER |
+    WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Desk properties"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,114,83,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,171,83,50,14
+    PUSHBUTTON      "Apply",IDC_APPLY,229,83,50,14
+    EDITTEXT        IDC_NAME,43,7,136,14,ES_AUTOHSCROLL
+    RTEXT           "Name",IDC_STATIC,7,10,33,8
+    CONTROL         "",IDC_PREVIEW,"Static",SS_OWNERDRAW | SS_SUNKEN,182,7,
+                    96,72
+    RTEXT           "Wallpaper",IDC_STATIC,7,29,33,8
+    PUSHBUTTON      "...",IDC_CHOOSE_WALLPAPER,163,26,16,14,BS_NOTIFY
+    CONTROL         "",IDC_HOTKEY,"AlternateHotKeyControl",WS_BORDER |
+                    WS_TABSTOP,43,45,136,14
+    RTEXT           "Hotkey",IDC_STATIC,7,48,33,8
+    CONTROL         "",IDC_BGCOLOR_BTN,"Static",SS_OWNERDRAW | SS_NOTIFY,43,
+                    64,136,14,WS_EX_STATICEDGE
+    LTEXT           "Color",IDC_STATIC,7,66,33,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_WALLPAPER,43,26,117,14,ES_AUTOHSCROLL
+END
+
+IDD_SHORTCUT_SETTINGS DIALOGEX DISCARDABLE 0, 0, 214, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CONTROL |
+    DS_CENTER | WS_CHILD | WS_CAPTION | WS_SYSMENU
+CAPTION "Shortcuts"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_SHORTCUTSLIST,"SysListView32",LVS_REPORT |
+                    LVS_SINGLESEL | LVS_SORTASCENDING | LVS_ALIGNLEFT |
+                    LVS_NOSORTHEADER | WS_TABSTOP,7,7,200,100,
+                    WS_EX_CLIENTEDGE
+END
+
+IDD_DISPLAY_SETTINGS DIALOGEX DISCARDABLE  0, 0, 214, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CONTROL |
+    DS_CENTER | WS_CHILD | WS_CAPTION | WS_SYSMENU
+CAPTION "Display"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_TRANSP_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS |
+                    WS_TABSTOP,24,75,166,18
+    GROUPBOX        "Transparency level",IDC_TRANSP_STATIC,7,64,200,43
+    LTEXT           "255",IDC_TRANSP_STATIC2,189,77,14,8
+    RTEXT           "0",IDC_TRANSP_STATIC1,14,79,9,12
+    CTEXT           "255",IDC_TRANSP_DISP,9,94,195,8
+    GROUPBOX        "Appearance",IDC_STATIC,7,7,200,52
+    CONTROL         "Plain color",IDC_PLAINCOLOR_RATIO,"Button",
+                    BS_AUTORADIOBUTTON,16,19,48,10
+    CONTROL         "Image",IDC_IMAGE_RATIO,"Button",BS_AUTORADIOBUTTON,16,
+                    31,36,10
+    CONTROL         "Screenshot",IDC_SCREENSHOT_RATIO,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED,16,43,52,10
+    PUSHBUTTON      "Color",IDC_EXTRAPARAM_BTN,148,17,50,14
+    PUSHBUTTON      "Font",IDC_FONT_BTN,148,38,50,14
+END
+
+IDD_OSD_SETTINGS DIALOGEX DISCARDABLE  0, 0, 214, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CONTROL |
+    DS_CENTER | WS_CHILD | WS_CAPTION | WS_SYSMENU
+CAPTION "OSD"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Options",IDC_STATIC,7,7,200,63
+    CONTROL         "Display desktop name in OSD",IDC_ENABLEOSD_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,18,114,10
+    LTEXT           "Hide Timeout (ms):",IDC_TIMEOUT_STATIC,19,54,62,8
+    EDITTEXT        IDC_TIMEOUT_EDIT,85,51,47,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_TIMEOUT_SPIN,"msctls_updown32",UDS_SETBUDDYINT |
+                    UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS |
+                    UDS_NOTHOUSANDS,117,51,11,14
+    PUSHBUTTON      "Font...",IDC_FONT_BTN,142,15,60,14
+    PUSHBUTTON      "Background...",IDC_BGCOLOR_BTN,142,33,60,14
+    GROUPBOX        "Transparency level",IDC_TRANSP_STATIC,7,75,200,32
+    RTEXT           "0",IDC_TRANSP_STATIC1,14,88,9,12
+    CONTROL         "",IDC_TRANSP_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS |
+                    WS_TABSTOP,24,86,166,18
+    LTEXT           "255",IDC_TRANSP_STATIC2,189,88,14,8
+    CONTROL         "Disable mouse input",IDC_TRANSPARENT_CHK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,29,79,10
+    CONTROL         "Shade background",IDC_BACKGROUND_CHK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,40,75,10
+    PUSHBUTTON      "Position...",IDC_POSITION_BTN,142,51,60,14
+END
+
+IDD_MOVEWINDOW DIALOGEX DISCARDABLE 0, 0, 178, 127
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CENTER |
+    WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Move window to desktop"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Make window visible on all desktops",IDC_ALLDESKS_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,129,10
+    LISTBOX         IDC_DESK_LIST,7,20,164,77,LBS_NOINTEGRALHEIGHT |
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,7,106,50,14
+    PUSHBUTTON      "Apply",IDC_APPLY,64,106,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,121,106,50,14
+END
+
+IDD_WINDOW_SETTINGS DIALOGEX DISCARDABLE 0, 0, 214, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CONTROL |
+    DS_CENTER | WS_CHILD | WS_CAPTION | WS_SYSMENU
+CAPTION "Settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_TRANSP_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS |
+                    WS_TABSTOP,24,75,166,18
+    GROUPBOX        "Transparency level",IDC_TRANSP_STATIC,7,64,200,43
+    LTEXT           "255",IDC_TRANSP_STATIC2,189,77,14,8
+    RTEXT           "0",IDC_TRANSP_STATIC1,14,79,9,12
+    CTEXT           "255",IDC_TRANSP_DISP,59,94,95,8
+    CONTROL         "Always on top",IDC_ONTOP_CHECK,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,18,17,80,10
+    CONTROL         "Minimize to tray",IDC_MINTOTRAY_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,30,80,10
+    CONTROL         "Show on all desktops",IDC_ALLDESKS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,43,80,10
+    CONTROL         "Transparent",IDC_ENABLETRANSP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,115,17,50,10
+    GROUPBOX        "Options",IDC_STATIC,7,7,200,52
+END
+
+IDD_WINDOW_AUTOSETTINGS DIALOGEX DISCARDABLE 0, 0, 214, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CONTROL |
+    DS_CENTER | WS_CHILD | WS_CAPTION | WS_SYSMENU
+CAPTION "Auto-settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Auto-settings",IDC_STATIC,7,7,200,52
+    CONTROL         "Disable",IDC_DISABLE_RATIO,"Button",BS_AUTORADIOBUTTON,
+                    17,18,70,10
+    CONTROL         "Use settings from last session",IDC_LASTSESSION_RATIO,
+                    "Button",BS_AUTORADIOBUTTON,17,30,111,10
+    CONTROL         "Use saved settings",IDC_SAVED_RATIO,"Button",
+                    BS_AUTORADIOBUTTON,17,43,79,10
+    PUSHBUTTON      "Save settings now!",IDC_SAVESETTINGS_BTN,129,40,73,14
+    GROUPBOX        "Additional settings",IDC_STATIC,7,64,200,43
+    CONTROL         "Auto-set size",IDC_AUTOSIZE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,76,80,10
+    CONTROL         "Auto-set position",IDC_AUTOPOS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,91,80,10
+    CONTROL         "Auto-set desktop",IDC_AUTODESK_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,116,76,80,10
+END
+
+IDD_WINDOW_FILTER DIALOGEX DISCARDABLE 0, 0, 214, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CONTROL |
+    DS_CENTER | WS_CHILD | WS_CAPTION | WS_SYSMENU
+CAPTION "Filter"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+   GROUPBOX         "Window class",IDC_STATIC,7,7,200,30
+   CONTROL          "",IDC_FILTERWNDCLS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,17,14,14
+   EDITTEXT         IDC_WNDCLSFLT_EDIT,30,17,170,14,ES_AUTOHSCROLL
+   GROUPBOX         "Window title",IDC_STATIC,7,42,200,30
+   CONTROL          "",IDC_FILTERWNDTITLE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,52,14,14
+   EDITTEXT         IDC_WNDTITLEFLT_EDIT,30,52,170,14,ES_AUTOHSCROLL
+   GROUPBOX         "Program",IDC_STATIC,7,77,200,30
+   CONTROL          "",IDC_FILTERPROGRAM_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,87,14,14
+   EDITTEXT         IDC_PROGRAMFLT_EDIT,30,87,150,14,ES_AUTOHSCROLL
+   PUSHBUTTON       "...",IDC_BROWSE_BTN,183,87,16,14
+END
+
+IDD_GLOBAL_SETTINGS DIALOGEX DISCARDABLE 0, 0, 214, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CONTROL |
+    DS_CENTER | WS_CHILD | WS_CAPTION | WS_SYSMENU
+CAPTION "Settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Always on top",IDC_ONTOP_CHECK,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,16,18,80,10
+    CONTROL         "Enable tray icon",IDC_TRAYICON_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,31,80,10
+    CONTROL         "Enable tooltips",IDC_TOOLTIPS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,44,80,10
+    CONTROL         "All windows in task list",
+                    IDC_ALLWINDOWSINTASKLIST_CHECK,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,16,57,84,10
+    CONTROL         "Confirm before killing",IDC_CONFIRMKILL_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,111,18,80,10
+    CONTROL         "Close To Tray",IDC_CLOSETOTRAY_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,111,31,80,10
+    CONTROL         "Start with Windows",IDC_STARTWITHWINDOWS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,111,44,80,10
+    CONTROL         "Auto switch desktop",IDC_AUTOSWITCHDESKTOP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,111,57,80,10
+    GROUPBOX        "Options",IDC_STATIC,7,7,200,100
+    LTEXT           "Snap sensibility:",IDC_STATIC,112,91,52,8
+    EDITTEXT        IDC_SNAPSIZE_EDIT,167,89,35,13,ES_AUTOHSCROLL |
+                    ES_NUMBER
+    CONTROL         "",IDC_SNAPSIZE_SPIN,"msctls_updown32",UDS_SETBUDDYINT |
+                    UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS |
+                    UDS_NOTHOUSANDS,207,92,6,6
+    LTEXT           "Auto-hide delay:",IDC_STATIC,112,75,54,8
+    EDITTEXT        IDC_AUTOHIDEDELAY_EDIT,167,73,35,13,ES_AUTOHSCROLL |
+                    ES_NUMBER
+    CONTROL         "",IDC_AUTOHIDEDELAY_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY |
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,207,77,6,6,
+                    WS_EX_TRANSPARENT
+    CONTROL         "Mouse warp",IDC_MOUSEWARP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,70,52,10
+	 CONTROL         "more...",IDC_MOUSEWARPCFG_BTN,"HyperLinkControl",
+                    WS_GROUP | WS_TABSTOP,70,70,30,10, WS_EX_TRANSPARENT
+END
+
+IDD_TROUBLESHOOTING_SETTINGS DIALOGEX DISCARDABLE 0, 0, 214, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CONTROL |
+    DS_CENTER | WS_CHILD | WS_CAPTION | WS_SYSMENU
+CAPTION "Advanced"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Enable",IDC_INTEGRATEWTHSHELL_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,19,49,10
+    GROUPBOX        "Shell integration",IDC_STATIC,7,7,200,41
+    PUSHBUTTON      "Exceptions...",IDC_SHELLINTEGEXCEPTION_BTN,145,16,56,15
+    GROUPBOX        "Hiding method",IDC_STATIC,7,53,200,51
+    CONTROL         "Hide windows",IDC_HIDEMETHOD_RADIO,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,16,65,59,10
+    CONTROL         "Minimize windows",IDC_MINIMIZEMETHOD_RATIO,"Button",
+                    BS_AUTORADIOBUTTON,16,77,71,10
+    CONTROL         "Move windows",IDC_MOVEMETHOD_RATIO,"Button",
+                    BS_AUTORADIOBUTTON,16,89,63,10
+    PUSHBUTTON      "Exceptions...",IDC_HIDINGMETHODEXCEPTIONS_BTN,145,62,56,
+                    15
+    CONTROL         "Detect incompatible applications",
+                    IDC_AUTOEXCEPTION_CHECK,"Button",BS_AUTOCHECKBOX |
+                    WS_DISABLED | WS_TABSTOP,16,32,118,10
+END
+
+IDD_APPLLIST_DLG DIALOGEX 0, 0, 287, 187
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,230,7,50,14
+    CONTROL         "",IDC_APPL_LIST,"SysListView32",LVS_REPORT |
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT |
+                    WS_TABSTOP,7,7,216,173,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Cancel",IDCANCEL,230,26,50,14
+    PUSHBUTTON      "Add...",IDC_INSERTAPPL_BTN,230,130,50,14
+    PUSHBUTTON      "Edit",IDC_EDITAPPL_BTN,230,148,50,14
+    PUSHBUTTON      "Remove",IDC_REMOVEAPPL_BTN,230,166,50,14
+END
+
+IDD_MOUSEWARP_SETTINGS DIALOGEX DISCARDABLE 6, 18, 233, 119
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CENTER |
+    WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Mouse warp"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+	CONTROL "Configuration", IDC_STATIC, "Button", BS_GROUPBOX|WS_GROUP, 6, 4, 130, 89
+  	CONTROL "Enable", IDC_MOUSEWARP_CHECK, "Button", BS_AUTOCHECKBOX|WS_TABSTOP, 14, 17, 92, 10
+	LTEXT "Warp sensibility:", IDC_STATIC, 14, 31, 80, 8
+	CONTROL "", IDC_WARPSENSIBILITY_EDIT, "Edit", ES_NUMBER|ES_AUTOHSCROLL|WS_BORDER|WS_TABSTOP, 95, 29, 34, 12
+  	LTEXT "Minimum duration (ms):", IDC_STATIC, 14, 47, 80, 8
+	CONTROL "", IDC_MINDURATION_EDIT, "Edit", ES_NUMBER|ES_AUTOHSCROLL|WS_BORDER|WS_TABSTOP, 95, 45, 34, 12
+ 	LTEXT "Rewarp delay (ms):", IDC_STATIC, 14, 63, 80, 8
+	CONTROL "", IDC_REWARPDELAY_EDIT, "Edit", ES_NUMBER|ES_AUTOHSCROLL|WS_BORDER|WS_TABSTOP, 95, 61, 34, 12
+  	CONTROL "Switch mouse position", IDC_SWAPMOUSE_CHECK, "Button", BS_AUTOCHECKBOX|WS_TABSTOP, 14, 77, 92, 10
+  	CONTROL "Enabling key", IDC_STATIC, "Button", BS_GROUPBOX|WS_GROUP, 143, 4, 84, 89
+  	CONTROL "None", IDC_WARPKEY_NONE_RADIO, "Button", BS_AUTORADIOBUTTON|WS_TABSTOP, 151, 17, 56, 10
+	CONTROL "Alt", IDC_WARPKEY_ALT_RADIO, "Button", BS_AUTORADIOBUTTON|WS_TABSTOP, 151, 29, 56, 10
+  	CONTROL "Shift", IDC_WARPKEY_SHIFT_RADIO, "Button", BS_AUTORADIOBUTTON, 151, 41, 56, 10
+  	CONTROL "Control", IDC_WARPKEY_CTRL_RADIO, "Button", BS_AUTORADIOBUTTON, 151, 53, 56, 10
+  	CONTROL "Windows", IDC_WARPKEY_WIN_RADIO, "Button", BS_AUTORADIOBUTTON, 151, 65, 56, 10
+  	CONTROL "Other:", IDC_WARPKEY_OTHER_RADIO, "Button", BS_AUTORADIOBUTTON, 151, 77, 35, 10
+  	CONTROL "", IDC_CUSTOMKEY_EDIT, "msctls_hotkey32", ES_AUTOHSCROLL|WS_BORDER|WS_TABSTOP, 187, 76, 32, 12
+  	DEFPUSHBUTTON "OK", IDOK, 133, 99, 45, 15
+	CONTROL "Cancel", IDCANCEL, "Button", WS_TABSTOP, 182, 99, 45, 15
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_PROGRAM             "Program"
+    IDS_PROGRAMINLIST_ERROR "Selected program is already in the list."
+    IDS_ERROR               "Error"
+    IDS_ADDPROGRAM          "Add program..."
+    IDS_PROGRAMFILTER       "Program file|*.EXE|All|*.*|"
+    IDS_PICTUREFILTER       "Images|*.BMP;*.JPEG;*.JPG;*.GIF;*.PCX|All|*.*|"
+    IDS_SELECT_BACKGROUND   "Select background image"
+    IDS_DISABLED            "disabled"
+    IDS_PARAM_COLOR         "Color"
+    IDS_PARAM_IMAGE         "Image"
+    IDS_PARAM_NONE          "No option"
+    IDS_NEEDADESKTOP_ERROR  "Virtual Dimension needs at least one virtual desktop to function properly !"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_LANGUAGE            "English"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_UNABLETOREMOVEDESKTOP "Unable to remove desktop"
+    IDS_METHOD              "Method"
+    IDS_METHOD_HIDE         "Hide"
+    IDS_METHOD_MINIMIZE     "Minimize"
+    IDS_METHOD_MOVE         "Move"
+    IDS_DLGNAME_SETTINGS    "Settings"
+    IDS_SELECT_WALLPAPER    "Select wallpaper image"
+    IDS_NOIMAGE             "No image"
+    IDS_DESKTOP_BASENAME    "Desk"
+    IDS_COLUMN_FUNCTION     "Function"
+    IDS_COLUMN_SHORTCUT     "Shortcut"
+    IDS_REGISTERSHELLHOOK_ERROR
+                            "Unable to locate function 'RegisterShellHook' in shell32.dll"
+    IDS_LICENSE_LINK        "Click here to display the GNU General Public License"
+    IDS_MENU_ALWAYSONTOP    "Always on top"
+    IDS_MENU_MINTOTRAY      "Minimize to tray"
+    IDS_MENU_TRANSPARENT    "Transparent"
+    IDS_CONFIGURE           "Configure"
+    IDS_LOCKPREVIEWWND      "Lock the window"
+    IDS_SHOWCAPTION         "Show the caption"
+    IDS_LANGUAGEMENU        "Language"
+    IDS_ABOUT               "About"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_MENU_ONALLDESKTOPS  "All desktops"
+    IDS_MENU_CHANGEDESKTOP  "Change desktop..."
+    IDS_MENU_ACTIVATEWND    "Activate"
+    IDS_MENU_RESTOREWND     "Restore"
+    IDS_MENU_MINIMIZEWND    "Minimize"
+    IDS_MENU_MAXIMIZEWND    "Maximize"
+    IDS_MENU_MAXHEIGHTWND   "Maximize Height"
+    IDS_MENU_MAXWIDTHWND    "Maximize Width"
+    IDS_MENU_CLOSEWND       "Close"
+    IDS_MENU_KILLWND        "Kill"
+    IDS_MENU_WNDPROPERTIES  "Properties"
+    IDS_MENU_SIZE           "&Size"
+    IDS_MENU_MOVE           "&Move"
+    IDS_AUTOSETTINGS_ERROR  "Access to the registry failed. Auto-settings will not be saved."
+    IDS_WINDOWPROPERTIES    "Window Properties"
+    IDS_CONFIRMKILL         "If you kill the window, you may lose some date. Continue ?"
+    IDS_KILLWARNING         "Warning! Killing is bad"
+END
+
+

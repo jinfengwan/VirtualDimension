@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="5" />
+	<Project>
+		<Option title="Virtual Dimension" />
+		<Option makefile="makefile" />
+		<Option default_target="" />
+		<Option compiler="msvc8" />
+		<Build>
+			<Target title="vd.exe - Debug|VC++">
+				<Option output="Debug\VirtualDimension.exe" />
+				<Option object_output="Debug" />
+				<Option type="0" />
+				<Option compiler="msvc8" />
+				<Compiler>
+					<Add option="/MDd" />
+					<Add option="/RTCu" />
+					<Add option="/RTCs" />
+					<Add option="/RTC1" />
+					<Add option="/GL" />
+					<Add option="/Gm" />
+					<Add option="/EHc" />
+					<Add option="/EHs" />
+					<Add option="/GR" />
+					<Add option="/GS" />
+					<Add option="/Od" />
+					<Add option="/W4" />
+					<Add option="/Zi /D_DEBUG" />
+					<Add option="/wd4996" />
+					<Add option="/DWIN32" />
+					<Add option="/D_DEBUG" />
+					<Add option="/D_WINDOWS" />
+				</Compiler>
+				<Linker>
+					<Add option="/DEBUG" />
+					<Add option="/pdb:Debug\VirtualDimension.pdb" />
+					<Add option="/LTCG /DEBUG" />
+					<Add library="comctl32" />
+					<Add library="Version" />
+				</Linker>
+			</Target>
+			<Target title="vd.exe - Release|VC++">
+				<Option output="Release\VirtualDimension.exe" />
+				<Option object_output="Release" />
+				<Option type="0" />
+				<Option compiler="msvc8" />
+				<Compiler>
+					<Add option="/MT" />
+					<Add option="/GA" />
+					<Add option="/GL" />
+					<Add option="/EHc" />
+					<Add option="/EHs" />
+					<Add option="/GR" />
+					<Add option="/Ox" />
+					<Add option="/W2" />
+					<Add option="/DWIN32" />
+					<Add option="/DNDEBUG" />
+					<Add option="/D_WINDOWS" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add option="/LTCG" />
+					<Add library="comctl32" />
+					<Add library="Version" />
+				</Linker>
+			</Target>
+			<Target title="HookDll - Debug|VC++">
+				<Option output="Debug\HookDll.dll" />
+				<Option object_output="Debug" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Compiler>
+					<Add option="/MTd" />
+					<Add option="/EHc" />
+					<Add option="/EHs" />
+					<Add option="/Od" />
+					<Add option="/W3" />
+					<Add option="/Zi /D_DEBUG" />
+					<Add option="/DWIN32" />
+					<Add option="/D_DEBUG" />
+					<Add option="/D_WINDOWS" />
+				</Compiler>
+				<Linker>
+					<Add option="/DEBUG" />
+					<Add option="/INCREMENTAL:NO" />
+					<Add option="/LTCG /DEBUG" />
+				</Linker>
+			</Target>
+			<Target title="HookDll - Release|VC++">
+				<Option output="Release\HookDll.dll" />
+				<Option object_output="Release" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Compiler>
+					<Add option="/MT" />
+					<Add option="/EHc" />
+					<Add option="/EHs" />
+					<Add option="/Ox" />
+					<Add option="/W2" />
+					<Add option="/DWIN32" />
+					<Add option="/DNDEBUG" />
+					<Add option="/D_WINDOWS" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add option="/LTCG" />
+				</Linker>
+			</Target>
+			<Target title="langEN - Debug|VC++">
+				<Option output="Debug\langEN.dll" />
+				<Option object_output="Debug" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Compiler>
+					<Add option="/MTd" />
+					<Add option="/EHc" />
+					<Add option="/EHs" />
+					<Add option="/Od" />
+					<Add option="/W3" />
+					<Add option="/Zi /D_DEBUG" />
+					<Add option="/DWIN32" />
+					<Add option="/D_DEBUG" />
+					<Add option="/D_WINDOWS" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add option="/LTCG" />
+					<Add option="/NOENTRY" />
+					<Add option="/MACHINE:X86" />
+					<Add option="/DEBUG" />
+				</Linker>
+			</Target>
+			<Target title="langEN - Release|VC++">
+				<Option output="Release\langEN.dll" />
+				<Option object_output="Release" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Compiler>
+					<Add option="/MT" />
+					<Add option="/EHc" />
+					<Add option="/EHs" />
+					<Add option="/Ox" />
+					<Add option="/W2" />
+					<Add option="/DWIN32" />
+					<Add option="/DNDEBUG" />
+					<Add option="/D_WINDOWS" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add option="/LTCG" />
+					<Add option="/NOENTRY" />
+					<Add option="/MACHINE:X86" />
+				</Linker>
+			</Target>
+			<Target title="langFR - Debug|VC++">
+				<Option output="Debug\langFR.dll" />
+				<Option object_output="Debug" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Compiler>
+					<Add option="/MTd" />
+					<Add option="/EHc" />
+					<Add option="/EHs" />
+					<Add option="/Od" />
+					<Add option="/W3" />
+					<Add option="/Zi /D_DEBUG" />
+					<Add option="/DWIN32" />
+					<Add option="/D_DEBUG" />
+					<Add option="/D_WINDOWS" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add option="/LTCG" />
+					<Add option="/NOENTRY" />
+					<Add option="/MACHINE:X86" />
+					<Add option="/DEBUG" />
+				</Linker>
+			</Target>
+			<Target title="langFR - Release|VC++">
+				<Option output="Release\langFR.dll" />
+				<Option object_output="Release" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Compiler>
+					<Add option="/MT" />
+					<Add option="/EHc" />
+					<Add option="/EHs" />
+					<Add option="/Ox" />
+					<Add option="/W2" />
+					<Add option="/DWIN32" />
+					<Add option="/DNDEBUG" />
+					<Add option="/D_WINDOWS" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add option="/LTCG" />
+					<Add option="/NOENTRY" />
+					<Add option="/MACHINE:X86" />
+				</Linker>
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="Debug|VC++" targets="vd.exe - Debug|VC++;HookDll - Debug|VC++;langEN - Debug|VC++;langFR - Debug|VC++;" />
+			<Add alias="Release|VC++" targets="vd.exe - Release|VC++;HookDll - Release|VC++;langEN - Release|VC++;langFR - Release|VC++;" />
+		</VirtualTargets>
+		<Linker>
+			<Add library="ComCtl32" />
+			<Add library="ComDlg32" />
+		</Linker>
+		<Unit filename="AlwaysOnTop.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="AlwaysOnTop.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="ApplicationListDlg.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="ApplicationListDlg.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="BackgroundColor.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="BackgroundColor.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="BackgroundDisplayMode.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="BackgroundDisplayMode.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="BalloonNotif.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="BalloonNotif.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="CmdLine.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="CmdLine.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="Config.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="Config.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="ConfigBox.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="Desktop.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="Desktop.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="DesktopManager.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="DesktopManager.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="ExplorerWrapper.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="ExplorerWrapper.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="FastWindow.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="FastWindow.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="HidingMethod.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="HidingMethod.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="HookDLL.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="HookDll - Debug|VC++" />
+			<Option target="HookDll - Release|VC++" />
+		</Unit>
+		<Unit filename="HookDLL.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+			<Option target="HookDll - Debug|VC++" />
+			<Option target="HookDll - Release|VC++" />
+		</Unit>
+		<Unit filename="HotKeyControl.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="HotKeyControl.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="HotKeyManager.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="HotKeyManager.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="HotkeyConfig.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="HotkeyConfig.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="LICENSE.html">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="LinkControl.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="LinkControl.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="Locale.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="Locale.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="MouseWarp.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="MouseWarp.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="OnScreenDisplay.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="OnScreenDisplay.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="PlatformHelper.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="PlatformHelper.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="Resource.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+			<Option target="langEN - Debug|VC++" />
+			<Option target="langEN - Release|VC++" />
+			<Option target="langFR - Debug|VC++" />
+			<Option target="langFR - Release|VC++" />
+		</Unit>
+		<Unit filename="Settings.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="Settings.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="SharedMenuBuffer.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+			<Option target="HookDll - Debug|VC++" />
+			<Option target="HookDll - Release|VC++" />
+		</Unit>
+		<Unit filename="SharedMenuBuffer.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+			<Option target="HookDll - Debug|VC++" />
+			<Option target="HookDll - Release|VC++" />
+		</Unit>
+		<Unit filename="ShellHook.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="ShellHook.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="StdString.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="SubclassWindow.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="TaskPool.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="TaskPool.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="ToolTip.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="ToolTip.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="Transparency.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="Transparency.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="TrayIcon.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="TrayIcon.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="TrayIconsManager.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="TrayIconsManager.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="VirtualDimension.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="VirtualDimension.exe.manifest">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="VirtualDimension.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="VirtualDimension.ico">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="VirtualDimension.rc">
+			<Option compilerVar="WINDRES" />
+			<Option objectName="VirtualDimension.res" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="VirtualDimensionSmall.ico">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="WallPaper.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="WallPaper.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="Window.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="Window.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="WindowDialogs.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="WindowsList.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="WindowsList.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="WindowsManager.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="WindowsManager.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="defaultapp_sm.ico">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="deskPropsDlg.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="icon1.ico">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="kill.bmp">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="kill.ico">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="kill2.ico">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="kill3.ico">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="langEN.rc">
+			<Option compilerVar="WINDRES" />
+			<Option objectName="langEN.res" />
+			<Option target="langEN - Debug|VC++" />
+			<Option target="langEN - Release|VC++" />
+		</Unit>
+		<Unit filename="langFR.rc">
+			<Option compilerVar="WINDRES" />
+			<Option objectName="langFR.res" />
+			<Option target="langFR - Debug|VC++" />
+			<Option target="langFR - Release|VC++" />
+		</Unit>
+		<Unit filename="logo.bmp">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="logo.gif">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="makefile">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="maxH.bmp">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="maxH.ico">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="maxV.bmp">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="maxV.ico">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="minTray.bmp">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="minTray.ico">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="movewindow.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="movewindow.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="stdafx.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Unit filename="stdafx.h">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="vd.exe - Debug|VC++" />
+			<Option target="vd.exe - Release|VC++" />
+		</Unit>
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

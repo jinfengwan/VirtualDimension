@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Virtual Dimension" />
+		<Option makefile="makefile" />
+		<Option makefile_is_custom="1" />
+		<Option pch_mode="0" />
+		<Option default_target="VD - Debug" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="VD - Debug">
+				<Option output="mingw-debug\virtualdimension.exe" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="mingw-debug" />
+				<Option object_output="mingw-debug\" />
+				<Option deps_output="cb-debug\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectResourceIncludeDirsRelation="0" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-mthreads -lcomctl32 -lole32 -lolepro32 -lversion -luuid" />
+				</Linker>
+				<MakeCommands>
+					<Build command="$make -f $makefile DEBUG=1" />
+					<CompileFile command="$make -f $makefile $file DEBUG=1" />
+					<Clean command="$make -f $makefile clean DEBUG=1" />
+					<DistClean command="$make -f $makefile distclean$target DEBUG=1" />
+				</MakeCommands>
+			</Target>
+			<Target title="VD - Release">
+				<Option output="mingw-release\virtualdimension.exe" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="mingw-release" />
+				<Option object_output="mingw-debug\" />
+				<Option deps_output="cb-debug\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option parameters='arg1 arg\ 2 &quot;arg 3&quot; a' />
+				<Option projectResourceIncludeDirsRelation="0" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-mthreads -lcomctl32 -lole32 -lolepro32 -lversion -luuid" />
+				</Linker>
+				<MakeCommands>
+					<Build command="$make -f $makefile" />
+					<CompileFile command="$make -f $makefile $file" />
+					<Clean command="$make -f $makefile clean" />
+					<DistClean command="$make -f $makefile distclean$target" />
+				</MakeCommands>
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="All" targets="VD - Debug;VD - Release;" />
+		</VirtualTargets>
+		<Linker>
+			<Add library="libstdc++.a" />
+			<Add library="libgcc.a" />
+			<Add library="libgdi32.a" />
+			<Add library="libcomdlg32.a" />
+			<Add library="libodbc32.a" />
+			<Add library="libwsock32.a" />
+			<Add library="libwinspool.a" />
+			<Add library="libwinmm.a" />
+			<Add library="libshell32.a" />
+			<Add library="libcomctl32.a" />
+			<Add library="libctl3d32.a" />
+			<Add library="libadvapi32.a" />
+			<Add library="libopengl32.a" />
+			<Add library="libglu32.a" />
+			<Add library="libole32.a" />
+			<Add library="liboleaut32.a" />
+			<Add library="libuuid.a" />
+		</Linker>
+		<Unit filename="AlwaysOnTop.cpp" />
+		<Unit filename="AlwaysOnTop.h" />
+		<Unit filename="ApplicationListDlg.cpp" />
+		<Unit filename="ApplicationListDlg.h" />
+		<Unit filename="BackgroundColor.cpp" />
+		<Unit filename="BackgroundColor.h" />
+		<Unit filename="BackgroundDisplayMode.cpp" />
+		<Unit filename="BackgroundDisplayMode.h" />
+		<Unit filename="BalloonNotif.cpp" />
+		<Unit filename="BalloonNotif.h" />
+		<Unit filename="CmdLine.cpp" />
+		<Unit filename="CmdLine.h" />
+		<Unit filename="Config.cpp" />
+		<Unit filename="Config.h" />
+		<Unit filename="ConfigBox.cpp" />
+		<Unit filename="Desktop.cpp" />
+		<Unit filename="Desktop.h" />
+		<Unit filename="DesktopManager.cpp" />
+		<Unit filename="DesktopManager.h" />
+		<Unit filename="ExplorerWrapper.cpp" />
+		<Unit filename="ExplorerWrapper.h" />
+		<Unit filename="FastWindow.cpp" />
+		<Unit filename="FastWindow.h" />
+		<Unit filename="HidingMethod.cpp" />
+		<Unit filename="HidingMethod.h" />
+		<Unit filename="HookDLL.cpp" />
+		<Unit filename="HookDLL.h" />
+		<Unit filename="HotKeyControl.cpp" />
+		<Unit filename="HotKeyControl.h" />
+		<Unit filename="HotKeyManager.cpp" />
+		<Unit filename="HotKeyManager.h" />
+		<Unit filename="HotkeyConfig.cpp" />
+		<Unit filename="HotkeyConfig.h" />
+		<Unit filename="LinkControl.cpp" />
+		<Unit filename="LinkControl.h" />
+		<Unit filename="Locale.cpp" />
+		<Unit filename="Locale.h" />
+		<Unit filename="MouseWarp.cpp" />
+		<Unit filename="MouseWarp.h" />
+		<Unit filename="OnScreenDisplay.cpp" />
+		<Unit filename="OnScreenDisplay.h" />
+		<Unit filename="PlatformHelper.cpp" />
+		<Unit filename="PlatformHelper.h" />
+		<Unit filename="Resource.h" />
+		<Unit filename="Settings.cpp" />
+		<Unit filename="Settings.h" />
+		<Unit filename="SharedMenuBuffer.cpp" />
+		<Unit filename="SharedMenuBuffer.h" />
+		<Unit filename="ShellHook.cpp" />
+		<Unit filename="ShellHook.h" />
+		<Unit filename="StdString.h" />
+		<Unit filename="SubclassWindow.cpp" />
+		<Unit filename="TaskPool.cpp" />
+		<Unit filename="TaskPool.h" />
+		<Unit filename="ToolTip.cpp" />
+		<Unit filename="ToolTip.h" />
+		<Unit filename="Transparency.cpp" />
+		<Unit filename="Transparency.h" />
+		<Unit filename="TrayIcon.cpp" />
+		<Unit filename="TrayIcon.h" />
+		<Unit filename="TrayIconsManager.cpp" />
+		<Unit filename="TrayIconsManager.h" />
+		<Unit filename="VirtualDimension.cpp" />
+		<Unit filename="VirtualDimension.h" />
+		<Unit filename="VirtualDimension.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="WallPaper.cpp" />
+		<Unit filename="WallPaper.h" />
+		<Unit filename="Window.cpp" />
+		<Unit filename="Window.h" />
+		<Unit filename="WindowDialogs.cpp" />
+		<Unit filename="WindowsList.cpp" />
+		<Unit filename="WindowsList.h" />
+		<Unit filename="WindowsManager.cpp" />
+		<Unit filename="WindowsManager.h" />
+		<Unit filename="deskPropsDlg.cpp" />
+		<Unit filename="guids.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="langEN.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="langFR.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="movewindow.cpp" />
+		<Unit filename="movewindow.h" />
+		<Unit filename="stdafx.cpp" />
+		<Unit filename="stdafx.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
