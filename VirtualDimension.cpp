@@ -19,7 +19,7 @@
  */
 
 // Virtual Dimension.cpp : Defines the entry point for the application.
-//
+////
 #include "stdafx.h"
 #include "VirtualDimension.h"
 #include "settings.h"

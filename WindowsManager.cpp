@@ -30,7 +30,7 @@
 #include "HookDLL.h"
 
 WindowsManager * winMan;
-
+//
 WindowsManager::WindowsManager(): m_shellhook(vdWindow), m_firstFreeDelayedUpdateWndIdx(-1)
 {
    Settings settings;
