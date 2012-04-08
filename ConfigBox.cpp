@@ -83,6 +83,9 @@ LRESULT CALLBACK SettingsConfiguration(HWND hDlg, UINT message, WPARAM wParam, L
          //Setup start with windows
          CheckDlgButton(hDlg, IDC_STARTWITHWINDOWS_CHECK, settings.LoadStartWithWindows() ? BST_CHECKED : BST_UNCHECKED);
 
+		 //item#005
+		 CheckDlgButton(hDlg, IDC_INMAINMENU_CHECK, settings.LoadDesktopsOnMainmenu() ? BST_CHECKED : BST_UNCHECKED);
+
          //Setup auto switch desktop
          CheckDlgButton(hDlg, IDC_AUTOSWITCHDESKTOP_CHECK, winMan->IsAutoSwitchDesktop() ? BST_CHECKED : BST_UNCHECKED);
 
@@ -164,6 +167,11 @@ LRESULT CALLBACK SettingsConfiguration(HWND hDlg, UINT message, WPARAM wParam, L
             hWnd = GetDlgItem(hDlg, IDC_STARTWITHWINDOWS_CHECK);
             res = SendMessage(hWnd, BM_GETCHECK, 0, 0) ==  BST_CHECKED ? true : false;
             settings.SaveStartWithWindows(res);
+
+            //item#005
+            hWnd = GetDlgItem(hDlg, IDC_INMAINMENU_CHECK);
+            res = SendMessage(hWnd, BM_GETCHECK, 0, 0) ==  BST_CHECKED ? true : false;
+            settings.SaveDesktopsOnMainmenu(res);
 
             //Apply auto switch desktop
             winMan->SetAutoSwitchDesktop(IsDlgButtonChecked(hDlg, IDC_AUTOSWITCHDESKTOP_CHECK) == BST_CHECKED);

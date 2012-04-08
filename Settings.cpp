@@ -40,6 +40,9 @@ DEFINE_SETTING(Settings, HasCaption, bool, true);
 DEFINE_SETTING(Settings, SnapSize, int, 15);
 DEFINE_SETTING(Settings, AutoHideDelay, int, 0);
 DEFINE_SETTING(Settings, EnableToolTips, bool, true);
+
+//DEFINE_SETTING(Settings, DesktopsOnMainmenu, bool, false);
+
 DEFINE_SETTING(Settings, ConfirmKilling, bool, true);
 DEFINE_SETTING(Settings, AutoSaveWindowSettings, bool, false);
 DEFINE_SETTING(Settings, CloseToTray, bool, false);
@@ -158,6 +161,52 @@ void Settings::SaveStartWithWindows(bool start)
       RegCloseKey(regKey);
    }
 }
+
+
+
+
+//item#005
+bool Settings::LoadDesktopsOnMainmenu()
+{
+   HKEY regKey;
+   DWORD dwType;
+   DWORD byteData;
+   DWORD dwCbData;
+   if ((RegOpenKeyEx(HKEY_CURRENT_USER, regKeyName, 0, KEY_READ, &regKey) == ERROR_SUCCESS) &&
+       (RegQueryValueEx(regKey, "DesktopsOnMainmenu", NULL, &dwType, (BYTE*)&byteData, &dwCbData) == ERROR_SUCCESS))
+   {
+      RegCloseKey(regKey);
+	  if(byteData == 1)
+		return true;
+	  else return false;
+   }
+   else
+      return false;
+}
+
+void Settings::SaveDesktopsOnMainmenu(bool OnMainmenu)
+{
+   HKEY regKey;
+   if (RegOpenKeyEx(HKEY_CURRENT_USER, regKeyName, 0, KEY_WRITE, &regKey) == ERROR_SUCCESS)
+   {
+	  DWORD byteData;
+      if (OnMainmenu)
+      {
+		 byteData = 0x00000001;
+         RegSetValueEx(regKey, "DesktopsOnMainmenu", NULL, REG_DWORD, (BYTE*)&byteData, 4);
+      }
+      else
+	  {
+		 byteData = 0x00000000;
+         RegSetValueEx(regKey, "DesktopsOnMainmenu", NULL, REG_DWORD, (BYTE*)&byteData, 4);
+	  }
+      RegCloseKey(regKey);
+   }
+}
+
+
+
+
 
 const char Settings::regSubKeyDisableShellIntegration[] = "DisableShellIntegration";
 const char Settings::regSubKeyHidingMethods[] = "HidingMethodsTweaks";

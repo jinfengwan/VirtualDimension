@@ -114,6 +114,7 @@ public:
     */
    HMENU BuildMenu();
    bool PrepareSysMenu(HANDLE filemapping);
+   bool PrepareSysMenuTmp(HANDLE filemapping);
    void OnMenuItemSelected(HMENU menu, int cmdId);
 
    inline void ShowWindow();

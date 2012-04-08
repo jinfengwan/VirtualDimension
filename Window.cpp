@@ -332,14 +332,60 @@ bool Window::PrepareSysMenu(HANDLE filemapping)
    if (m_transp.IsTransparencySupported())
       InsertMenuInfo(menuinfo, VDM_TOGGLETRANSPARENCY, IDS_MENU_TRANSPARENT, IsTransparent());
    menuinfo.InsertSeparator();
+
+   //item#005
+   HKEY regKey;
+   DWORD dwType;
+   DWORD byteData;
+   DWORD dwCbData;
+
+   if (RegOpenKeyEx(HKEY_CURRENT_USER, "Software\\Typz Software\\Virtual Dimension\\", 0, KEY_READ, &regKey) == ERROR_SUCCESS)
+   {
+		if(RegQueryValueEx(regKey, "DesktopsOnMainmenu", NULL, &dwType, (BYTE*)&byteData, &dwCbData) == ERROR_SUCCESS)
+		{
+		  RegCloseKey(regKey);
+		  if(byteData == 0)
+		  {
+			   InsertMenuInfo(menuinfo, VDM_TOGGLEALLDESKTOPS, IDS_MENU_ONALLDESKTOPS, IsOnAllDesktops());
+			   Desktop * desk = deskMan->GetFirstDesktop();
+			   int i = 0;
+			   while(desk != NULL && menuinfo.InsertMenu(VDM_MOVETODESK+i++, desk->GetText(), GetDesk()==desk))
+				  desk = deskMan->GetNextDesktop();
+			   menuinfo.InsertSeparator();
+		  }
+		}
+		else
+		{
+		   InsertMenuInfo(menuinfo, VDM_TOGGLEALLDESKTOPS, IDS_MENU_ONALLDESKTOPS, IsOnAllDesktops());
+		   Desktop * desk = deskMan->GetFirstDesktop();
+		   int i = 0;
+		   while(desk != NULL && menuinfo.InsertMenu(VDM_MOVETODESK+i++, desk->GetText(), GetDesk()==desk))
+			  desk = deskMan->GetNextDesktop();
+		   menuinfo.InsertSeparator();
+		}
+   }
+
+   InsertMenuInfo(menuinfo, VDM_MOVEWINDOW, IDS_MENU_CHANGEDESKTOP, false);
+   InsertMenuInfo(menuinfo, VDM_PROPERTIES, IDS_MENU_WNDPROPERTIES, false);
+
+   return true;
+}
+
+bool Window::PrepareSysMenuTmp(HANDLE filemapping)
+{
+   SharedMenuBuffer menuinfo(m_dwProcessId, filemapping);
+
+   //item#005
+   HKEY regKey;
+   DWORD dwType;
+   DWORD byteData;
+   DWORD dwCbData;
+
    InsertMenuInfo(menuinfo, VDM_TOGGLEALLDESKTOPS, IDS_MENU_ONALLDESKTOPS, IsOnAllDesktops());
    Desktop * desk = deskMan->GetFirstDesktop();
    int i = 0;
    while(desk != NULL && menuinfo.InsertMenu(VDM_MOVETODESK+i++, desk->GetText(), GetDesk()==desk))
       desk = deskMan->GetNextDesktop();
-   menuinfo.InsertSeparator();
-   InsertMenuInfo(menuinfo, VDM_MOVEWINDOW, IDS_MENU_CHANGEDESKTOP, false);
-   InsertMenuInfo(menuinfo, VDM_PROPERTIES, IDS_MENU_WNDPROPERTIES, false);
 
    return true;
 }

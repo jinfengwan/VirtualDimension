@@ -163,6 +163,10 @@ bool VirtualDimension::Start(HINSTANCE hInstance, int nCmdShow)
 
    SetMessageHandler(WM_VD_HOOK_MENU_COMMAND, this, &VirtualDimension::OnHookMenuCommand);
    SetMessageHandler(WM_VD_PREPARE_HOOK_MENU, this, &VirtualDimension::OnPrepareHookMenu);
+
+   //item#005
+   SetMessageHandler(WM_VD_PREPARE_HOOK_MENU_TMP, this, &VirtualDimension::OnPrepareHookMenuTmp);
+
    SetMessageHandler(WM_VD_CHECK_MIN_TO_TRAY, this, &VirtualDimension::OnCheckMinToTray);
 
 	// compare the window's style
@@ -585,6 +589,12 @@ LRESULT VirtualDimension::OnDestroy(HWND /*hWnd*/, UINT /*message*/, WPARAM /*wP
    //Save the visibility state of the title bar
    settings.SaveSetting(Settings::HasCaption, HasCaption());
 
+
+
+   //settings.SaveSetting(Settings::DesktopsOnMainmenu, ontop->IsAlwaysOnTop());
+
+
+
    // Remove the tray icon
    delete trayIcon;
 
@@ -655,6 +665,11 @@ LRESULT VirtualDimension::OnHookMenuCommand(HWND /*hWnd*/, UINT /*message*/, WPA
 LRESULT VirtualDimension::OnPrepareHookMenu(HWND /*hWnd*/, UINT /*message*/, WPARAM wParam, LPARAM lParam)
 {
    return ((Window*)lParam)->PrepareSysMenu((HANDLE)wParam);
+}
+
+LRESULT VirtualDimension::OnPrepareHookMenuTmp(HWND /*hWnd*/, UINT /*message*/, WPARAM wParam, LPARAM lParam)
+{
+   return ((Window*)lParam)->PrepareSysMenuTmp((HANDLE)wParam);
 }
 
 LRESULT VirtualDimension::OnCheckMinToTray(HWND /*hWnd*/, UINT /*message*/, WPARAM /*wParam*/, LPARAM lParam)

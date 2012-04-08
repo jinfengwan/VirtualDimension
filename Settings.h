@@ -43,6 +43,9 @@ public:
    static DECLARE_SETTING(SnapSize, int);
    static DECLARE_SETTING(AutoHideDelay, int);
    static DECLARE_SETTING(EnableToolTips, bool);
+
+   //static DECLARE_SETTING(DesktopsOnMainmenu, bool);
+
    static DECLARE_SETTING(ConfirmKilling, bool);
    static DECLARE_SETTING(AutoSaveWindowSettings, bool);
    static DECLARE_SETTING(CloseToTray, bool);
@@ -92,6 +95,14 @@ public:
 
    bool LoadStartWithWindows();
    void SaveStartWithWindows(bool start);
+
+
+   //item#005
+   bool LoadDesktopsOnMainmenu();
+   void SaveDesktopsOnMainmenu(bool OnMainmenu);
+
+
+
    bool LoadDisableShellIntegration(const char * windowclass);
    void SaveDisableShellIntegration(const char * windowclass, bool enable);
    int LoadHidingMethod(const char * windowclass);
@@ -168,6 +179,11 @@ protected:
    static const char regSubKeyDisableShellIntegration[];
    static const char regSubKeyHidingMethods[];
    static const char regValStartWithWindows[];
+
+   //item#005
+   //static const char regKeyDesktopsOnMainmenu[];
+   static const char regValDesktopsOnMainmenu[];
+
 
    static DWORD LoadDWord(HKEY regKey, bool keyOpened, const char * entry, DWORD defVal);
    static void SaveDWord(HKEY regKey, bool keyOpened, const char * entry, DWORD value);

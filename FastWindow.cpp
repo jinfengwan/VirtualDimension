@@ -80,6 +80,7 @@ ATOM FastWindow::RegisterClass(LPWNDCLASS lpwc)
 
 LRESULT CALLBACK FastWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	UINT i = message;
    FastWindow * window = (FastWindow*)GetWindowLongPtr(hWnd, GWLP_USERDATA);
 
    //Perform initialization if it has not been done yet

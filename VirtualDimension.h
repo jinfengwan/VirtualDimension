@@ -143,6 +143,7 @@ protected:
 
    LRESULT OnHookMenuCommand(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
    LRESULT OnPrepareHookMenu(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+   LRESULT OnPrepareHookMenuTmp(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
    LRESULT OnCheckMinToTray(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
     LRESULT OnCmdLanguageChange(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
