@@ -119,14 +119,14 @@ public:
 
    inline void ShowWindow();
    inline void HideWindow();
-   inline bool IsHidden() const               { return m_hidden; }
+   /*inline */bool IsHidden() const;/*               { return m_hidden; }*/
    inline bool CheckCreated();
    inline bool CheckDestroyed();
 
    bool IsMinimizeToTray() const              { return m_MinToTray; }
    void ToggleMinimizeToTray();
    void SetMinimizeToTray(bool totray);
-   bool IsIconic() const                      { return IsHidden() ? m_iconic : (::IsIconic(m_hWnd) ? true:false); }
+   bool IsIconic() const;/* const                      { return IsHidden() ? m_iconic : (::IsIconic(m_hWnd) ? true:false); }*/
    bool IsInTray() const                      { return IsMinimizeToTray() && IsIconic(); }
    void Restore();
 
@@ -309,5 +309,7 @@ bool Window::CheckDestroyed()
 
    return res;
 }
+
+
 
 #endif /*__WINDOW_H__*/

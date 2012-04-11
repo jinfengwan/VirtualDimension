@@ -701,3 +701,31 @@ void Window::OnFlashBallonClick(BalloonNotification::Message /*msg*/, int data)
       wnd->Activate();
    }
 }
+
+bool Window::IsHidden() const
+{
+	return m_hidden;
+}
+
+bool Window::IsIconic() const
+{
+	BOOL bTmp;
+	BOOL bIsIconic;
+	bIsIconic = ::IsIconic(m_hWnd);
+	if(bIsIconic)
+		bTmp = true;
+	else
+		bTmp = false;
+
+
+
+	BOOL bIsHidden;
+	bIsHidden = IsHidden();
+	if(bIsHidden)
+		return m_iconic;
+	else
+	{
+		return bTmp;
+	}
+	//return IsHidden() ? m_iconic : (::IsIconic(m_hWnd) ? true:false); 
+}

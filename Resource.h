@@ -1650,6 +1650,7 @@
 #define WM_MOUSEHOVER                   0x02A1
 #define WM_NCMOUSELEAVE                 0x02A2
 #define WM_MOUSELEAVE                   0x02A3
+//#define WM_BEGINCAPTURE                   0x02A4
 #define lDefaultTab                     720
 #define CF_PRIVATELAST                  0x02FF
 #define WM_CUT                          0x0300

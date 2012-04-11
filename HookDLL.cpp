@@ -145,22 +145,7 @@ LRESULT CALLBACK hookWndProcW(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 			InitPopupMenu(hWnd, (HMENU)wParam);
 		else if(hSysMenu == (HMENU)wParam)
 		{
-			//HKEY regKey;
-			//DWORD dwType;
-			//DWORD byteData;
-			//DWORD dwCbData;
-
-			//if (RegOpenKeyEx(HKEY_CURRENT_USER, "Software\\Typz Software\\Virtual Dimension\\", 0, KEY_READ, &regKey) == ERROR_SUCCESS)
-			//{
-			//	if(RegQueryValueEx(regKey, "DesktopsOnMainmenu", NULL, &dwType, (BYTE*)&byteData, &dwCbData) == ERROR_SUCCESS)
-			//	{
-			//		RegCloseKey(regKey);
-			//		if(byteData == 1)
-			//		{
 			GetAdditionalMenuItems(hWnd, (HMENU)wParam);
-			//		}
-			//	}
-			//}
 		}
 		break;
 
