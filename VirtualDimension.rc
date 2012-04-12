@@ -130,9 +130,9 @@ END
 // RT_MANIFEST
 //
 
-#ifndef _VC80_UPGRADE
-1/*CREATEPROCESS_MANIFEST_RESOURCE_ID*/ 24/*RT_MANIFEST*/ "VirtualDimension.exe.manifest"
-#endif
+//#ifndef _VC80_UPGRADE
+//1/*CREATEPROCESS_MANIFEST_RESOURCE_ID*/ 24/*RT_MANIFEST*/ "VirtualDimension.exe.manifest"
+//#endif
 
 /////////////////////////////////////////////////////////////////////////////
 //

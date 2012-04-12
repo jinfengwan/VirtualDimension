@@ -29,6 +29,7 @@
 #include "FastWindow.h"
 #include "Window.h"
 #include "MouseWarp.h"
+#include "Dwmapi.h"
 
 extern HWND configBox;
 extern Transparency * transp;

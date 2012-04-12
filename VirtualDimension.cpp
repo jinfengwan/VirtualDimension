@@ -52,6 +52,7 @@ Window* draggedWindow;
 HMENU hMenuPopup;
 HWND hWndVD;
 HWND hWndPopupMenu;
+HWND hwndThumbnail;
 
 #define WM_OPERATIONCOMPLETE WM_USER+1
 
@@ -475,6 +476,11 @@ LRESULT CALLBACK WndProcNew(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 	static HCURSOR dragCursor;
 	switch(message)
 	{
+	case WM_CREATE:
+		{
+			int i = 0;
+		}
+		break;
 	case WM_NCHITTEST:
 		{
 			POINT pt;
@@ -487,9 +493,41 @@ LRESULT CALLBACK WndProcNew(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 			for(int i = 0; i < GetMenuItemCount(hMenuPopup); i++)
 			{
 				if(i == index)
+				{
 					HiliteMenuItem(hWnd, hMenuPopup, i, MF_BYPOSITION|MF_HILITE);
+
+					HMODULE hMod = LoadLibrary("Dwmapi.dll");
+					if(hMod == NULL)
+						break;
+					typedef HRESULT (WINAPI *LPDwmIsCompositionEnabled)(BOOL*);
+					LPDwmIsCompositionEnabled LPDwmIsCompositionEnabled1;
+					LPDwmIsCompositionEnabled1 = (LPDwmIsCompositionEnabled)GetProcAddress(hMod, "DwmIsCompositionEnabled");
+					if(LPDwmIsCompositionEnabled1 == NULL)
+						break;
+					BOOL bAeroEnabled;
+					HRESULT hr = (*LPDwmIsCompositionEnabled1)(&bAeroEnabled);
+					if(SUCCEEDED(hr))
+					{
+						if(bAeroEnabled)
+						{
+							UINT MenuItemID = GetMenuItemID(hMenuPopup, i);
+							HTHUMBNAIL thumbnail;
+							HRESULT hr = DwmRegisterThumbnail(hwndThumbnail, ((Window*)(MenuItemID - WM_USER))->GetOwnedWindow(), &thumbnail);
+							RECT dest = {0,0,300,300};
+							DWM_THUMBNAIL_PROPERTIES dskThumbProps;
+							dskThumbProps.dwFlags = DWM_TNP_SOURCECLIENTAREAONLY | DWM_TNP_VISIBLE | DWM_TNP_OPACITY | DWM_TNP_RECTDESTINATION;
+							dskThumbProps.fSourceClientAreaOnly = FALSE; 
+							dskThumbProps.fVisible = TRUE;
+							dskThumbProps.opacity = (255 * 70)/100;
+							dskThumbProps.rcDestination = dest;
+							hr = DwmUpdateThumbnailProperties(thumbnail,&dskThumbProps);
+						}
+					}
+				}
 				else
+				{
 					HiliteMenuItem(hWnd, hMenuPopup, i, MF_BYPOSITION|MF_UNHILITE);
+				}
 			}
 		}
 		break;
@@ -579,7 +617,10 @@ LRESULT VirtualDimension::OnOPERATIONCOMPLETE(HWND hWnd, UINT message, WPARAM wP
 LRESULT VirtualDimension::OnEnterMenuLoop(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	hWndPopupMenu = ::FindWindow("#32768", 0);
-
+	RECT rc;
+	GetWindowRect(hWndPopupMenu, &rc);
+	hwndThumbnail = ::CreateWindowEx(WS_EX_LAYERED/*|WS_EX_TRANSPARENT*/, "static", "", WS_VISIBLE|WS_POPUP, rc.left - 300, rc.top, 300, 300, hWnd, NULL, m_hInstance, NULL);
+	//::ShowWindow(hwndThumbnail, SW_SHOW);
 	hWndVD = hWnd;
 	WndProcOld = (WNDPROC)SetWindowLongPtrA(hWndPopupMenu, GWLP_WNDPROC, (LONG_PTR)WndProcNew);
 
@@ -588,6 +629,7 @@ LRESULT VirtualDimension::OnEnterMenuLoop(HWND hWnd, UINT message, WPARAM wParam
 
 LRESULT VirtualDimension::OnExitMenuLoop(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	DestroyWindow(hwndThumbnail);
 	//hWndPopupMenu = ::FindWindow("#32768", 0);
 
 	//hWndVD = hWnd;
