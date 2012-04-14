@@ -620,7 +620,7 @@ LRESULT VirtualDimension::OnEnterMenuLoop(HWND hWnd, UINT message, WPARAM wParam
 	RECT rc;
 	GetWindowRect(hWndPopupMenu, &rc);
 	hwndThumbnail = ::CreateWindowEx(WS_EX_LAYERED/*|WS_EX_TRANSPARENT*/, "static", "", WS_VISIBLE|WS_POPUP, rc.left - 300, rc.top, 300, 300, hWnd, NULL, m_hInstance, NULL);
-	//::ShowWindow(hwndThumbnail, SW_SHOW);
+
 	hWndVD = hWnd;
 	WndProcOld = (WNDPROC)SetWindowLongPtrA(hWndPopupMenu, GWLP_WNDPROC, (LONG_PTR)WndProcNew);
 
@@ -630,23 +630,12 @@ LRESULT VirtualDimension::OnEnterMenuLoop(HWND hWnd, UINT message, WPARAM wParam
 LRESULT VirtualDimension::OnExitMenuLoop(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	DestroyWindow(hwndThumbnail);
-	//hWndPopupMenu = ::FindWindow("#32768", 0);
-
-	//hWndVD = hWnd;
-	//WndProcOld = (WNDPROC)SetWindowLongPtrA(hWndPopupMenu, GWLP_WNDPROC, (LONG_PTR)WndProcNew);
 
 	return 0;
 }
 
 LRESULT VirtualDimension::OnMenuSelect(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	//MENUITEMINFO mii;
-	//mii.cbSize = sizeof(MENUITEMINFO);
-	//mii.fMask = MIIM_ID;
-	//BOOL bRet = GetMenuItemInfo((HMENU)lParam, (UINT)wParam, TRUE, &mii);
-	//int i = GetLastError();
-	//draggedWindow = (Window*)(mii.wID - WM_USER);
-
 	return 0;
 }
 
@@ -743,7 +732,6 @@ LRESULT VirtualDimension::OnRightButtonDown(HWND hWnd, UINT /*message*/, WPARAM 
 	ClientToScreen(hWnd, &pt);
 
 	res = TrackPopupMenu(hMenu, /*TPM_RETURNCMD|*/TPM_RIGHTBUTTON/*|TPM_NONOTIFY*/, pt.x, pt.y, 0, hWnd, NULL);
-	int i = GetLastError();
 
 	return 0;
 }

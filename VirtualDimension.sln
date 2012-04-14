@@ -3,6 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VirtualDimension", "VirtualDimension.vcproj", "{DFA05DF2-3B31-4D86-807B-D0E0E897EFD5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HookDLL", "HookDLL.vcproj", "{77D481EB-D265-4998-AC19-912E68C01D48}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "langEN", "langEN.vcproj", "{B6D6A4C3-3A36-4660-A9A9-495B829F171E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "langFR", "langFR.vcproj", "{7B727584-E8C9-46D6-9650-916CFC0AEAA2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtransp", "libtransp.vcproj", "{6EC98C16-1051-4167-84BD-3A128E240974}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +21,22 @@ Global
 		{DFA05DF2-3B31-4D86-807B-D0E0E897EFD5}.Debug|Win32.Build.0 = Debug|Win32
 		{DFA05DF2-3B31-4D86-807B-D0E0E897EFD5}.Release|Win32.ActiveCfg = Release|Win32
 		{DFA05DF2-3B31-4D86-807B-D0E0E897EFD5}.Release|Win32.Build.0 = Release|Win32
+		{77D481EB-D265-4998-AC19-912E68C01D48}.Debug|Win32.ActiveCfg = Debug|Win32
+		{77D481EB-D265-4998-AC19-912E68C01D48}.Debug|Win32.Build.0 = Debug|Win32
+		{77D481EB-D265-4998-AC19-912E68C01D48}.Release|Win32.ActiveCfg = Release|Win32
+		{77D481EB-D265-4998-AC19-912E68C01D48}.Release|Win32.Build.0 = Release|Win32
+		{B6D6A4C3-3A36-4660-A9A9-495B829F171E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B6D6A4C3-3A36-4660-A9A9-495B829F171E}.Debug|Win32.Build.0 = Debug|Win32
+		{B6D6A4C3-3A36-4660-A9A9-495B829F171E}.Release|Win32.ActiveCfg = Release|Win32
+		{B6D6A4C3-3A36-4660-A9A9-495B829F171E}.Release|Win32.Build.0 = Release|Win32
+		{7B727584-E8C9-46D6-9650-916CFC0AEAA2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7B727584-E8C9-46D6-9650-916CFC0AEAA2}.Debug|Win32.Build.0 = Debug|Win32
+		{7B727584-E8C9-46D6-9650-916CFC0AEAA2}.Release|Win32.ActiveCfg = Release|Win32
+		{7B727584-E8C9-46D6-9650-916CFC0AEAA2}.Release|Win32.Build.0 = Release|Win32
+		{6EC98C16-1051-4167-84BD-3A128E240974}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6EC98C16-1051-4167-84BD-3A128E240974}.Debug|Win32.Build.0 = Debug|Win32
+		{6EC98C16-1051-4167-84BD-3A128E240974}.Release|Win32.ActiveCfg = Release|Win32
+		{6EC98C16-1051-4167-84BD-3A128E240974}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

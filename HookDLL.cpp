@@ -49,7 +49,7 @@ HMENU SetupMenu(HWND hWnd);
 void CleanupMenu(HWND hWnd, HMENU hMenu);
 void CleanupMainMenu(HWND hWnd, HMENU hMenu);
 void InitPopupMenu(HWND hWnd, HMENU hMenu);
-void GetAdditionalMenuItems(HWND hWnd, HMENU wParam);
+void SetAdditionalMenuItems(HWND hWnd, HMENU wParam);
 int FindMenuItem(UINT cmdid, HMENU hMenu);
 
 struct HWNDHookData
@@ -145,7 +145,7 @@ LRESULT CALLBACK hookWndProcW(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 			InitPopupMenu(hWnd, (HMENU)wParam);
 		else if(hSysMenu == (HMENU)wParam)
 		{
-			GetAdditionalMenuItems(hWnd, (HMENU)wParam);
+			SetAdditionalMenuItems(hWnd, (HMENU)wParam);
 		}
 		break;
 
@@ -503,7 +503,7 @@ void InitPopupMenu(HWND hWnd, HMENU hMenu)
 	}
 }
 
-void GetAdditionalMenuItems(HWND hWnd, HMENU hSysMenu)
+void SetAdditionalMenuItems(HWND hWnd, HMENU hSysMenu)
 {
 	if(nCount != 0)
 	{
@@ -525,7 +525,7 @@ void GetAdditionalMenuItems(HWND hWnd, HMENU hSysMenu)
 			RegCloseKey(regKey);
 			if(byteData == 1)
 			{
-				HWNDHookData * pHookData;
+				HWNDHookData* pHookData;
 				bool unicode = IsWindowUnicode(hWnd) ? true : false;
 
 				if (unicode)
@@ -548,10 +548,7 @@ void GetAdditionalMenuItems(HWND hWnd, HMENU hSysMenu)
 
 					menuinfo.ReadMenu(pHookData->m_hAdditionalMenu, VDtoSysItemID);
 
-
-
 					nCount = GetMenuItemCount(pHookData->m_hAdditionalMenu);
-
 
 					int i;
 					for(i = 0; i < nCount; i++)
