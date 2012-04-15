@@ -48,13 +48,10 @@ AlwaysOnTop * ontop;
 ToolTip * tooltip;
 
 WNDPROC WndProcOld;
-Window* draggedWindow;
 HMENU hMenuPopup;
 HWND hWndVD;
 HWND hWndPopupMenu;
 HWND hwndThumbnail;
-
-#define WM_OPERATIONCOMPLETE WM_USER+1
 
 VirtualDimension vdWindow;
 
@@ -165,9 +162,6 @@ bool VirtualDimension::Start(HINSTANCE hInstance, int nCmdShow)
 	//item#010
 	SetMessageHandler(WM_ENTERMENULOOP, this, &VirtualDimension::OnEnterMenuLoop);
 	SetMessageHandler(WM_EXITMENULOOP, this, &VirtualDimension::OnExitMenuLoop);
-	SetMessageHandler(WM_MENUSELECT, this, &VirtualDimension::OnMenuSelect);
-	SetMessageHandler(WM_OPERATIONCOMPLETE, this, &VirtualDimension::OnOPERATIONCOMPLETE);
-
 
 
 	SetMessageHandler(WM_MEASUREITEM, this, &VirtualDimension::OnMeasureItem);
@@ -474,13 +468,9 @@ LRESULT VirtualDimension::OnLeftButtonDown(HWND hWnd, UINT /*message*/, WPARAM /
 LRESULT CALLBACK WndProcNew(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	static HCURSOR dragCursor;
+	static Window* draggedWindow;
 	switch(message)
 	{
-	case WM_CREATE:
-		{
-			int i = 0;
-		}
-		break;
 	case WM_NCHITTEST:
 		{
 			POINT pt;
@@ -554,7 +544,7 @@ LRESULT CALLBACK WndProcNew(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 				ICONINFO icon;
 				GetIconInfo(draggedWindow->GetIcon(), &icon);
 				icon.fIcon = FALSE;
-				
+
 				dragCursor = (HCURSOR)CreateIconIndirect(&icon);
 				SetCursor(dragCursor);
 			}
@@ -604,14 +594,8 @@ LRESULT CALLBACK WndProcNew(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 
 		break;
 	}
-	
-	return CallWindowProcA(WndProcOld, hWnd, message, wParam, lParam);
-}
 
-LRESULT VirtualDimension::OnOPERATIONCOMPLETE(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	//EndMenu();
-	return 0;
+	return CallWindowProcA(WndProcOld, hWnd, message, wParam, lParam);
 }
 
 LRESULT VirtualDimension::OnEnterMenuLoop(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -619,7 +603,7 @@ LRESULT VirtualDimension::OnEnterMenuLoop(HWND hWnd, UINT message, WPARAM wParam
 	hWndPopupMenu = ::FindWindow("#32768", 0);
 	RECT rc;
 	GetWindowRect(hWndPopupMenu, &rc);
-	hwndThumbnail = ::CreateWindowEx(WS_EX_LAYERED/*|WS_EX_TRANSPARENT*/, "static", "", WS_VISIBLE|WS_POPUP, rc.left - 300, rc.top, 300, 300, hWnd, NULL, m_hInstance, NULL);
+	hwndThumbnail = ::CreateWindowEx(WS_EX_LAYERED/*|WS_EX_TRANSPARENT*/, "static", "", WS_VISIBLE|WS_POPUP, rc.left, rc.top - 300, 300, 300, hWnd, NULL, m_hInstance, NULL);
 
 	hWndVD = hWnd;
 	WndProcOld = (WNDPROC)SetWindowLongPtrA(hWndPopupMenu, GWLP_WNDPROC, (LONG_PTR)WndProcNew);
@@ -634,10 +618,6 @@ LRESULT VirtualDimension::OnExitMenuLoop(HWND hWnd, UINT message, WPARAM wParam,
 	return 0;
 }
 
-LRESULT VirtualDimension::OnMenuSelect(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	return 0;
-}
 
 LRESULT VirtualDimension::OnLeftButtonUp(HWND /*hWnd*/, UINT /*message*/, WPARAM /*wParam*/, LPARAM lParam)
 {
@@ -709,29 +689,45 @@ LRESULT VirtualDimension::OnRightButtonDown(HWND hWnd, UINT /*message*/, WPARAM 
 	{
 		window = desk->GetWindowFromPoint(pt.x, pt.y);
 		if (window)
+		{
 			hMenu = window->BuildMenu();
+
+			if (hMenu == NULL || GetMenuItemCount(hMenu) == 0)
+			{
+				hBaseMenu = hMenu; //destroy the newly created menu, even if we don't use it
+				hMenu = m_pSysMenu;
+			}
+			else
+				hBaseMenu = hMenu;
+
+			ClientToScreen(hWnd, &pt);
+			res = TrackPopupMenu(hMenu, TPM_RETURNCMD|TPM_RIGHTBUTTON, pt.x, pt.y, 0, hWnd, NULL);
+
+			if (hMenu == m_pSysMenu)
+				PostMessage(hWnd, WM_SYSCOMMAND, res, 0);
+			else if (res >= WM_USER)
+				window->OnMenuItemSelected(hMenu, res);
+			else
+				PostMessage(hWnd, WM_COMMAND, res, 0);
+
+			DestroyMenu(hBaseMenu);
+		}
 		else
 		{
 			hMenu = desk->BuildMenu();
 			hMenuPopup = hMenu;
+			if (hMenu == NULL || GetMenuItemCount(hMenu) == 0)
+			{
+				hBaseMenu = hMenu; //destroy the newly created menu, even if we don't use it
+				hMenu = m_pSysMenu;
+			}
+			else
+				hBaseMenu = hMenu;
+
+			ClientToScreen(hWnd, &pt);
+			res = TrackPopupMenu(hMenu, /*TPM_RETURNCMD|*/TPM_RIGHTBUTTON/*|TPM_NONOTIFY*/, pt.x, pt.y, 0, hWnd, NULL);
 		}
 	}
-
-	//If no window on desktop, or no menu for the window, display system menu
-	if (hMenu == NULL || GetMenuItemCount(hMenu) == 0)
-	{
-		hBaseMenu = hMenu; //destroy the newly created menu, even if we don't use it
-		hMenu = m_pSysMenu;
-	}
-	else
-		hBaseMenu = hMenu;
-
-	assert(hMenu != NULL);
-
-	//And show the menu
-	ClientToScreen(hWnd, &pt);
-
-	res = TrackPopupMenu(hMenu, /*TPM_RETURNCMD|*/TPM_RIGHTBUTTON/*|TPM_NONOTIFY*/, pt.x, pt.y, 0, hWnd, NULL);
 
 	return 0;
 }

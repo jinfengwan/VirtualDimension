@@ -135,8 +135,6 @@ protected:
 	//item#010
 	LRESULT OnEnterMenuLoop(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	LRESULT OnExitMenuLoop(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-	LRESULT OnMenuSelect(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-	LRESULT OnOPERATIONCOMPLETE(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 
 	LRESULT OnDestroy(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
