@@ -214,6 +214,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\DeskPopupMenu.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\deskPropsDlg.cpp"
 				>
 			</File>
@@ -385,6 +389,10 @@
 			</File>
 			<File
 				RelativePath=".\Config.h"
+				>
+			</File>
+			<File
+				RelativePath=".\DeskPopupMenu.h"
 				>
 			</File>
 			<File
